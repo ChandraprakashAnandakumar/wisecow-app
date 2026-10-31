@@ -36,12 +36,25 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v4
 
-    - name: Validate Kubernetes Manifests
-      uses: azure/setup-kubectl@v3
+    - name: Create KinD Cluster
+      uses: helm/kind-action@v1.10.0
       with:
-        version: 'latest'
+        cluster_name: wisecow-cluster
 
-    - name: Dry Run Manifests
+    - name: Generate TLS Secret
       run: |
-       kubectl apply --dry-run=client --validate=false -f k8s/
-       echo "Manifests are valid and ready for deployment!"
+        openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+          -keyout tls.key -out tls.crt -subj "/CN=wisecow.local/O=wisecow"
+        kubectl create secret tls wisecow-tls-secret --cert=tls.crt --key=tls.key
+
+    - name: Deploy Manifests
+      run: |
+        kubectl apply -f k8s/deployment.yaml
+        kubectl apply -f k8s/service.yaml
+        kubectl apply -f k8s/ingress.yaml
+
+    - name: Verify Rollout
+      run: |
+        kubectl rollout status deployment/wisecow-deployment --timeout=180s
+        kubectl get pods
+        kubectl get svc
