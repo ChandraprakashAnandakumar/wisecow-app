@@ -12,9 +12,11 @@ ENV PATH="${PATH}:/usr/games"
 
 WORKDIR /app
 
-# Wisecow script copy panni run permission tharom
+# Wisecow script copy pandrom
 COPY wisecow.sh .
-RUN chmod +x wisecow.sh
+
+# Fix Windows CRLF line endings & give execute permission
+RUN sed -i 's/\r$//' wisecow.sh && chmod +x wisecow.sh
 
 EXPOSE 4499
 
