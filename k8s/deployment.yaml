@@ -17,6 +17,7 @@ spec:
       containers:
       - name: wisecow
         image: chandraprakashanandakumar/wisecow:latest
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 4499
         resources:
