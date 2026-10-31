@@ -41,6 +41,11 @@ jobs:
       with:
         cluster_name: wisecow-cluster
 
+    - name: Build and Load Image into KinD
+      run: |
+        docker build -t chandraprakashanandakumar/wisecow:latest .
+        kind load docker-image chandraprakashanandakumar/wisecow:latest --name wisecow-cluster
+
     - name: Generate TLS Secret
       run: |
         openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
@@ -55,6 +60,6 @@ jobs:
 
     - name: Verify Rollout
       run: |
-        kubectl rollout status deployment/wisecow-deployment --timeout=180s
-        kubectl get pods
+        kubectl rollout status deployment/wisecow-deployment --timeout=60s
+        kubectl get pods -o wide
         kubectl get svc
