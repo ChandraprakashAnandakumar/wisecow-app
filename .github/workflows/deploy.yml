@@ -44,4 +44,4 @@ jobs:
     - name: Dry Run Manifests
       run: |
        kubectl apply --dry-run=client --validate=false -f k8s/
-        echo "Manifests are valid and ready for deployment!"
+       echo "Manifests are valid and ready for deployment!"
