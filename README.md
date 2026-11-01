@@ -4,6 +4,9 @@
 [![Docker Hub](https://img.shields.io/badge/Docker_Hub-chandraprakashanandakumar-blue?logo=docker)](https://hub.docker.com/r/chandraprakashanandakumar/wisecow)
 [![Kubernetes](https://img.shields.io/badge/Kubernetes-Orchestrated-326CE5?logo=kubernetes&logoColor=white)](https://kubernetes.io)
 
+<img width="365" height="247" alt="image" src="https://github.com/user-attachments/assets/72998b05-92e7-4b6e-8f16-aa577ebb79a2" />
+
+
 This repository contains the end-to-end containerization, Kubernetes manifest configurations, secure TLS implementation, and automated Continuous Integration & Continuous Deployment (CI/CD) pipeline for the **Wisecow** application.
 
 ---
@@ -23,8 +26,6 @@ This repository contains the end-to-end containerization, Kubernetes manifest co
                  ├── 2. Provision TLS Secret (wisecow-tls-secret)
                  ├── 3. Deploy K8s Manifests (Deployment, Service, Ingress)
                  └── 4. Verify Rollout (Zero-downtime Rollout Verification)
+---
 
-## Output Preview
------
-<img width="365" height="247" alt="image" src="https://github.com/user-attachments/assets/72998b05-92e7-4b6e-8f16-aa577ebb79a2" />
 
